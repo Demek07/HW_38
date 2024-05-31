@@ -1,0 +1,8 @@
+{% extends "users/base_profile.html" %}
+{% load static %}
+{% block content_profile %}
+    {% comment %} ТУТ Карточки {% endcomment %}
+    {% for card in cards %}
+        {% include "includes/card_preview.html" %}
+    {% endfor %}
+{% endblock content_profile %}

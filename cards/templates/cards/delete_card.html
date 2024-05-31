@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h2>Вы уверены, что хотите удалить эту карточку?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href="{% url 'catalog' %}"
+               class="btn btn-secondary"
+               style="background-color: #1b5589">Отмена</a>
+        </form>
+    </div>
+{% endblock %}

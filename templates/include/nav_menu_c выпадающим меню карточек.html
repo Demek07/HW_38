@@ -1,0 +1,68 @@
+<!--Меню было вставлено через include в базовый шаблон-->
+<nav class="navbar navbar-expand-lg navbar-dark"
+     style="background-color: #1b5589">
+  <div class="container-fluid">
+    <!-- Логотип и кнопка для мобильных версий -->
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Ссылки навигации и аутентификация -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav me-auto">
+        <!-- me-auto класс выравнивает элементы меню по левому краю -->
+        {% for item in menu %}
+          <li class="nav-item">
+            <a class="nav-link {% if forloop.first %}active{% endif %}"
+               aria-current="page"
+               href="{% url item.url_name %}">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+        {% comment %} </ul>
+        <ul class="navbar-nav me-auto"> {% endcomment %}
+          <!-- выпадающее меню -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">Работа с карточками</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="{% url 'add_card' %}">Добавление</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'edit_card' %}">Редактирование</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'delete_card' %}">Удаление</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <!-- Элементы правой части без выравнивания по левому краю -->
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="#">Привет, {{ user.username }}!</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:logout' %}">Выйти</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:login' %}">Войти</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:signup' %}">Регистрация</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>

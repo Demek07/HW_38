@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load markdown_to_html %}
+    <h1>Добавить карточку</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Колонка для формы редактирования -->
+            <div class="col-12 col-lg-6">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}<div class="alert alert-danger mt-1">{{ field.errors.as_text }}</div>{% endif %}
+                        </div>
+                    {% endfor %}
+                    <div class="mb-3">
+                        {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+                    </div>
+                    <button type="submit"
+                            class="btn btn-secondary"
+                            style="background-color: #1b5589">Отправить</button>
+                </form>
+            </div>
+            <div class="col-12 col-lg-6">
+                <h2>Подсказка</h2>
+                <p>Для добавления карточки заполните форму и нажмите кнопку "Отправить".</p>
+                <p>Поля формы:</p>
+                <ul>
+                    <li>
+                        <strong>Вопрос*</strong> - новый вопроса
+                    </li>
+                    <li>
+                        <strong>Ответ*</strong> - ответ к новому вопросу
+                    </li>
+                    <li>
+                        <strong>Категория*</strong> - категория вопроса
+                    </li>
+                    <li>
+                        <strong>Теги</strong> - теги к новому вопросу
+                    </li>
+                </ul>
+                <p>* - обязательные поля</p>
+                <p>После отправки формы карточка будет добавлена на главную страницу.</p>
+            </div>
+        </div>
+    {% endblock content %}
