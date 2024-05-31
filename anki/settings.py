@@ -27,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG')
 
 
-ALLOWED_HOSTS = ['flip-cards.ru', 'www.flip-cards.ru', 'localhost', '127.0.0.1', '213.171.10.225']
+ALLOWED_HOSTS = ['flip-cards.ru', 'www.flip-cards.ru', 'localhost', '127.0.0.1', '89.23.115.229']
 
 CSRF_TRUSTED_ORIGINS = ['https://flip-cards.ru', 'https://www.flip-cards.ru']
 
